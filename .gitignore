@@ -1,32 +1,64 @@
+# ==========================
 # Python
+# ==========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Jupyter
-.ipynb_checkpoints/
-
-# VS Code
-.vscode/
-
+# ==========================
 # Virtual Environment
+# ==========================
+.venv/
 venv/
 .env
 
+# ==========================
+# Jupyter
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+
+# ==========================
 # Dataset
+# ==========================
 data/
 train-faces/
 combined-train/
 *.zip
 
-# Checkpoints
-checkpoints/
+# ==========================
+# Model Checkpoints
+# ==========================
+checkpoints_baseline/
 checkpoints_train_faces/
-checkpoints_combined_resnet18/
-checkpoints_combined_resnet50/
+checkpoints_combined/
 
-# Kaggle submissions
+# ==========================
+# Kaggle Files
+# ==========================
 sample_submission.csv
 submission*.csv
-
-# Dataset metadata
 train_relationships.csv
+
+# ==========================
+# Temporary Files
+# ==========================
+temp/
+tmp/
+*.tmp
+
+# ==========================
+# Streamlit
+# ==========================
+.streamlit/
+
+# ==========================
+# Operating System
+# ==========================
+.DS_Store
+Thumbs.db
