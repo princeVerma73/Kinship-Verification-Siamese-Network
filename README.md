@@ -8,9 +8,15 @@ A Deep Learning project that predicts whether two face images belong to biologic
 
 Kinship Verification is a binary image similarity problem where a model determines whether two face images belong to related family members.
 
-The project explores multiple Siamese Network training strategies and provides an end-to-end web application for real-time inference.
+This project explores multiple Siamese Network training strategies and provides an end-to-end web application for real-time inference.
 
-### Motivation
+> **Note**
+>
+> For detailed information about the dataset, problem statement, preprocessing, model architecture, training pipeline, and implementation details, please refer to **GUIDE.md**.
+
+---
+
+## 🎯 Motivation
 
 Kinship verification has applications in:
 
@@ -38,7 +44,7 @@ Kinship verification has applications in:
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Technology Stack
 
 ### Deep Learning
 
@@ -69,6 +75,12 @@ Kinship verification has applications in:
 ```text
 Kinship-Verification-Siamese-Network/
 │
+├── backend/
+│   ├── app.py
+│   ├── model.py
+│   ├── predict.py
+│   └── utils.py
+│
 ├── static/
 │   ├── index.html
 │   ├── styles.css
@@ -79,11 +91,6 @@ Kinship-Verification-Siamese-Network/
 │   ├── prediction-related.png
 │   └── prediction-not-related.png
 │
-├── app.py
-├── model.py
-├── predict.py
-├── utils.py
-│
 ├── 01_train_baseline.ipynb
 ├── 02_train_faces.ipynb
 ├── 03_combined_training.ipynb
@@ -92,9 +99,10 @@ Kinship-Verification-Siamese-Network/
 ├── checkpoints_train_faces/
 ├── checkpoints_combined/
 │
-├── requirements.txt
+├── GUIDE.md
 ├── DEPLOYMENT.md
 ├── render.yaml
+├── requirements.txt
 ├── README.md
 └── .gitignore
 ```
@@ -148,7 +156,7 @@ pip install -r requirements.txt
 Start the FastAPI server
 
 ```bash
-uvicorn app:app --reload
+uvicorn backend.app:app --reload
 ```
 
 Open your browser
@@ -161,7 +169,7 @@ http://localhost:8000
 
 # 🧠 Model Workflow
 
-```
+```text
 Face Image 1
         │
         ▼
@@ -216,24 +224,28 @@ Related / Not Related
 
 ---
 
-# 🔬 Training Strategies
+# 🔬 Model Comparison
 
-This repository contains three independent experiments:
+Three different Siamese Network models were trained and evaluated during this project.
 
-### Baseline Model
+| Model | Description |
+|--------|-------------|
+| Baseline Model | Standard Siamese Network using ResNet18 |
+| Train-Faces Model | Trained using cropped face images |
+| Combined Training Model | Trained using a combined training strategy |
 
-- Standard Siamese architecture
-- Initial benchmark
+Although the **Train-Faces** and **Combined Training** models achieved higher validation accuracy during training, they produced inconsistent predictions on several real-world test image pairs.
 
-### Train-Faces Model
+The **Baseline Model** consistently produced more reliable predictions on unseen family images and correctly identified real kinship relationships during manual testing. Therefore, the deployed web application uses the **Baseline Model** for inference.
 
-- Trained using cropped face images
-- Better facial representation
+---
 
-### Combined Training
+# 📦 Repository Notes
 
-- Uses combined training strategy
-- Improved overall performance
+- Training datasets are not included because of their large size.
+- Model checkpoint files are excluded from GitHub.
+- All training notebooks are included for reproducibility.
+- Refer to **GUIDE.md** for dataset preparation, preprocessing, training pipeline, and implementation details.
 
 ---
 
