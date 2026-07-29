@@ -1,116 +1,71 @@
+"""FastAPI web server for the kinship-verification model."""
+
+import io
 import os
 import tempfile
+from pathlib import Path
 
-import streamlit as st
-from PIL import Image
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from PIL import Image, UnidentifiedImageError
 
 from predict import predict
 
-# ------------------------------------
-# Page Config
-# ------------------------------------
 
-st.set_page_config(
-    page_title="Kinship Verification",
-    page_icon="👨‍👩‍👧",
-    layout="wide"
-)
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
 
-# ------------------------------------
-# Title
-# ------------------------------------
-
-st.title("👨‍👩‍👧 Kinship Verification")
-
-st.write(
-    "Upload two face images and the model will predict whether they belong to related family members."
-)
-
-# Upload Images
+app = FastAPI(title="Kinship Verification")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
-col1, col2 = st.columns(2)
-
-with col1:
-    img1 = st.file_uploader(
-        "Upload First Image",
-        type=["jpg", "jpeg", "png"]
-    )
-
-with col2:
-    img2 = st.file_uploader(
-        "Upload Second Image",
-        type=["jpg", "jpeg", "png"]
-    )
+@app.get("/", include_in_schema=False)
+async def home() -> FileResponse:
+    return FileResponse(STATIC_DIR / "index.html")
 
 
-# Preview Images
+def validate_image(contents: bytes, upload: UploadFile) -> None:
+    if not contents:
+        raise HTTPException(status_code=400, detail=f"{upload.filename or 'Image'} is empty.")
+    if len(contents) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Each image must be 10 MB or smaller.")
+    if upload.content_type not in ALLOWED_TYPES:
+        raise HTTPException(status_code=415, detail="Use a JPG, PNG, or WebP image.")
+    try:
+        with Image.open(io.BytesIO(contents)) as image:
+            image.verify()
+    except (UnidentifiedImageError, OSError, ValueError) as error:
+        raise HTTPException(status_code=400, detail="One of the uploads is not a valid image.") from error
 
-if img1 and img2:
 
-    col1, col2 = st.columns(2)
+def save_temp_image(contents: bytes, filename: str | None) -> str:
+    suffix = Path(filename or "image.jpg").suffix.lower()
+    if suffix not in {".jpg", ".jpeg", ".png", ".webp"}:
+        suffix = ".jpg"
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temporary_file:
+        temporary_file.write(contents)
+        return temporary_file.name
 
-    with col1:
-        st.image(
-            Image.open(img1),
-            caption="First Image",
-            width=300
-        )
 
-    with col2:
-        st.image(
-            Image.open(img2),
-            caption="Second Image",
-            width=300
-        )
+@app.post("/api/predict")
+async def make_prediction(
+    first_image: UploadFile = File(...),
+    second_image: UploadFile = File(...),
+) -> dict[str, str | float]:
+    first_contents, second_contents = await first_image.read(), await second_image.read()
+    validate_image(first_contents, first_image)
+    validate_image(second_contents, second_image)
 
-# ------------------------------------
-# Predict
-# ------------------------------------
-
-if st.button("Predict"):
-
-    if img1 is None or img2 is None:
-        st.warning("Please upload both images.")
-
-    else:
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp1:
-            temp1.write(img1.getvalue())
-            path1 = temp1.name
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp2:
-            temp2.write(img2.getvalue())
-            path2 = temp2.name
-
-        try:
-
-            with st.spinner("Predicting..."):
-
-                result = predict(path1, path2)
-
-            st.success("Prediction Completed")
-
-            st.markdown("---")
-
-            st.subheader("Result")
-
-            if result["prediction"] == "Related":
-
-                st.success(
-                    f"✅ Related\n\nConfidence : {result['confidence']}%"
-                )
-
-            else:
-
-                st.error(
-                    f"❌ Not Related\n\nConfidence : {result['confidence']}%"
-                )
-
-        finally:
-
-            if os.path.exists(path1):
-                os.remove(path1)
-
-            if os.path.exists(path2):
-                os.remove(path2)
+    first_path = save_temp_image(first_contents, first_image.filename)
+    second_path = save_temp_image(second_contents, second_image.filename)
+    try:
+        return predict(first_path, second_path)
+    except Exception as error:
+        raise HTTPException(status_code=500, detail="Prediction could not be completed. Please try different images.") from error
+    finally:
+        for path in (first_path, second_path):
+            if os.path.exists(path):
+                os.remove(path)

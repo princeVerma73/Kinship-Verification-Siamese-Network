@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>Kinship Verification</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">AI FACE COMPARISON</p>
+        <h1>Kinship<br /><span>Verification</span></h1>
+        <p class="lead">Upload two clear face photos to estimate whether they belong to related family members.</p>
+      </section>
+      <section class="card" aria-labelledby="upload-title">
+        <div class="card-heading">
+          <div><p class="step">STEP 1 OF 2</p><h2 id="upload-title">Add two portraits</h2></div>
+          <p class="formats">JPG, PNG or WEBP · max 10 MB</p>
+        </div>
+        <form id="prediction-form">
+          <div class="upload-grid">
+            <label class="dropzone" for="first-image">
+              <input id="first-image" name="first_image" type="file" accept="image/jpeg,image/png,image/webp" />
+              <span class="portrait-icon" aria-hidden="true">01</span><span class="upload-label">First person</span><span class="upload-hint">Choose an image</span>
+              <img class="preview" alt="First selected portrait preview" />
+            </label>
+            <div class="link-mark" aria-hidden="true">↔</div>
+            <label class="dropzone" for="second-image">
+              <input id="second-image" name="second_image" type="file" accept="image/jpeg,image/png,image/webp" />
+              <span class="portrait-icon" aria-hidden="true">02</span><span class="upload-label">Second person</span><span class="upload-hint">Choose an image</span>
+              <img class="preview" alt="Second selected portrait preview" />
+            </label>
+          </div>
+          <button id="predict-button" type="submit" disabled>Analyze relationship <span>→</span></button>
+        </form>
+        <section id="result" class="result" aria-live="polite" hidden></section>
+        <p id="message" class="message" role="alert"></p>
+      </section>
+      <p class="privacy">Images are processed only for this prediction and are not retained.</p>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
