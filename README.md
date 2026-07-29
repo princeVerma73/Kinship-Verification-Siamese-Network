@@ -286,7 +286,7 @@ https://github.com/princeVerma73
 
 **LinkedIn**
 
-https://www.linkedin.com/in/princeverma73/
+https://www.linkedin.com/in/prince-verma73/
 
 ---
 
