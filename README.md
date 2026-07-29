@@ -226,17 +226,31 @@ Related / Not Related
 
 # 🔬 Model Comparison
 
-Three different Siamese Network models were trained and evaluated during this project.
+Three different Siamese Network models were developed and evaluated during this project.
 
 | Model | Description |
 |--------|-------------|
 | Baseline Model | Standard Siamese Network using ResNet18 |
 | Train-Faces Model | Trained using cropped face images |
-| Combined Training Model | Trained using a combined training strategy |
+| Combined Training Model | Combined training strategy |
 
-Although the **Train-Faces** and **Combined Training** models achieved higher validation accuracy during training, they produced inconsistent predictions on several real-world test image pairs.
+The **Train-Faces** model achieved good quantitative results during experimentation but produced inconsistent predictions on several real-world family image pairs.
 
-The **Baseline Model** consistently produced more reliable predictions on unseen family images and correctly identified real kinship relationships during manual testing. Therefore, the deployed web application uses the **Baseline Model** for inference.
+After comparing both validation metrics and qualitative predictions on unseen images, the **Baseline Model** demonstrated more reliable and consistent performance. Therefore, the deployed web application uses the **Baseline Model** for inference.
+
+---
+
+## 📈 Model Performance
+
+The deployed Baseline Model achieved the following validation metrics:
+
+| Metric | Score |
+|--------|-------:|
+| Accuracy | 96.07% |
+| Precision | 97.10% |
+| Recall | 94.95% |
+| F1 Score | 96.01% |
+| ROC-AUC | 99.35% |
 
 ---
 
