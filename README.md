@@ -1,75 +1,107 @@
 # 👨‍👩‍👧 Kinship Verification using Siamese Neural Network
 
-A Deep Learning project that predicts whether two face images belong to biological family members using a Siamese Neural Network built with PyTorch and deployed with FastAPI.
+A Deep Learning project that predicts whether two face images belong to biological family members using a **Siamese Neural Network** built with **PyTorch** and deployed as a **FastAPI web application** with a modern HTML, CSS, and JavaScript frontend.
 
 ---
 
 ## 📌 Overview
 
-Kinship verification is a binary classification task where the model determines whether two face images belong to related people.
+Kinship Verification is a binary image similarity problem where a model determines whether two face images belong to related family members.
 
-This project explores multiple training strategies:
+The project explores multiple Siamese Network training strategies and provides an end-to-end web application for real-time inference.
 
-- Baseline Siamese Network
-- Train-Faces Dataset
-- Combined Training Strategy
+### Motivation
 
-The final application provides a lightweight HTML, CSS, and JavaScript interface served by FastAPI for uploading two face images and obtaining a prediction.
+Kinship verification has applications in:
+
+- Human trafficking investigations
+- Missing children identification
+- Family photo organization
+- Face retrieval systems
+- Academic computer vision research
+- Social media image analysis
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
 - Siamese Neural Network using ResNet18 backbone
-- Face pair similarity prediction
-- FastAPI web application with a responsive browser UI
-- GPU/CPU Support
-- PyTorch Inference Pipeline
-- Multiple Training Experiments
-- Clean Project Structure
+- Deep face embedding comparison
+- Related / Not Related prediction
+- Confidence score generation
+- FastAPI REST backend
+- Modern responsive frontend built with HTML, CSS & JavaScript
+- GPU and CPU inference support
+- Multiple training experiments
+- Clean modular project structure
+- Ready for deployment
 
 ---
 
 ## 🛠 Tech Stack
 
-- Python
+### Deep Learning
+
 - PyTorch
 - Torchvision
+- NumPy
+- Pillow (PIL)
+
+### Backend
+
 - FastAPI
 - Uvicorn
-- PIL (Pillow)
-- NumPy
-- Kaggle Dataset
+
+### Frontend
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+
+### Dataset
+
+- Kaggle Kinship Recognition Dataset
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 Kinship-Verification-Siamese-Network/
 │
-├── app.py                      # FastAPI application
-├── static/                     # HTML, CSS, and JavaScript user interface
-├── model.py                    # Siamese Network architecture
-├── predict.py                  # Prediction pipeline
-├── utils.py                    # Image preprocessing
+├── static/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
 │
-├── 01_train_baseline.ipynb     # Baseline training
-├── 02_train_faces.ipynb        # Training on train-faces dataset
-├── 03_combined_training.ipynb  # Combined training
+├── assets/
+│   ├── homepage.png
+│   ├── prediction-related.png
+│   └── prediction-not-related.png
+│
+├── app.py
+├── model.py
+├── predict.py
+├── utils.py
+│
+├── 01_train_baseline.ipynb
+├── 02_train_faces.ipynb
+├── 03_combined_training.ipynb
 │
 ├── checkpoints_baseline/
 ├── checkpoints_train_faces/
 ├── checkpoints_combined/
 │
 ├── requirements.txt
+├── DEPLOYMENT.md
+├── render.yaml
 ├── README.md
 └── .gitignore
 ```
 
 ---
 
-## ⚙️ Installation
+# 🚀 Installation
 
 Clone the repository
 
@@ -77,7 +109,7 @@ Clone the repository
 git clone https://github.com/princeVerma73/Kinship-Verification-Siamese-Network.git
 ```
 
-Go inside the project
+Move inside the project
 
 ```bash
 cd Kinship-Verification-Siamese-Network
@@ -97,7 +129,7 @@ Activate
 .venv\Scripts\activate
 ```
 
-### Linux / Mac
+### Linux / macOS
 
 ```bash
 source .venv/bin/activate
@@ -111,13 +143,15 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Run the web app
+# ▶️ Run the Application
+
+Start the FastAPI server
 
 ```bash
 uvicorn app:app --reload
 ```
 
-Open
+Open your browser
 
 ```
 http://localhost:8000
@@ -125,7 +159,7 @@ http://localhost:8000
 
 ---
 
-## 🧠 Model Workflow
+# 🧠 Model Workflow
 
 ```
 Face Image 1
@@ -133,7 +167,7 @@ Face Image 1
         ▼
     ResNet18
         │
-   Face Embedding
+ Face Embedding
         │
         │
 Face Image 2
@@ -141,7 +175,7 @@ Face Image 2
         ▼
     ResNet18
         │
-   Face Embedding
+ Face Embedding
         │
         ▼
 Embedding Comparison
@@ -152,58 +186,100 @@ Related / Not Related
 
 ---
 
-## 📷 Application Preview
+# 📷 Application Preview
 
-Upload two face images.
+## Homepage
 
-The application will:
-
-- Preprocess both images
-- Generate embeddings
-- Predict whether the pair belongs to related family members
-- Display confidence score
+![Homepage](assets/homepage.png)
 
 ---
 
-## 📊 Training Experiments
+## Prediction — Related
 
-| Notebook | Purpose |
-|----------|---------|
-| 01_train_baseline.ipynb | Baseline Siamese Network |
-| 02_train_faces.ipynb | Training using train-faces dataset |
+![Related](assets/prediction-related.png)
+
+---
+
+## Prediction — Not Related
+
+![Not Related](assets/prediction-not-related.png)
+
+---
+
+# 📊 Training Experiments
+
+| Notebook | Description |
+|----------|-------------|
+| 01_train_baseline.ipynb | Baseline Siamese Network training |
+| 02_train_faces.ipynb | Training using cropped face dataset |
 | 03_combined_training.ipynb | Combined training strategy |
 
 ---
 
-## 📌 Future Improvements
+# 🔬 Training Strategies
 
-- Better face alignment
+This repository contains three independent experiments:
+
+### Baseline Model
+
+- Standard Siamese architecture
+- Initial benchmark
+
+### Train-Faces Model
+
+- Trained using cropped face images
+- Better facial representation
+
+### Combined Training
+
+- Uses combined training strategy
+- Improved overall performance
+
+---
+
+# ⚠️ Challenges
+
+Kinship verification is significantly harder than face recognition because:
+
+- Family members can have large appearance differences.
+- Age gaps introduce major facial changes.
+- Lighting and pose variations affect similarity.
+- Accessories like glasses or facial hair can mislead the model.
+- Different generations often have weak visual resemblance.
+
+---
+
+# 🚀 Future Improvements
+
 - ArcFace embeddings
 - EfficientNet backbone
-- Ensemble models
-- Improved threshold calibration
-- Docker deployment
+- Vision Transformers
+- Better face alignment
+- Ensemble learning
+- Threshold calibration
+- Docker support
 - Cloud deployment
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Prince Verma**
 
-B.Tech CSE
-IIIT Bhagalpur
+B.Tech CSE, IIIT Bhagalpur
 
-GitHub
+**GitHub**
 
 https://github.com/princeVerma73
 
-LinkedIn
+**LinkedIn**
 
 https://www.linkedin.com/in/princeverma73/
 
 ---
 
-## ⭐ If you like this project
+# ⭐ Support
 
-Give the repository a ⭐ on GitHub.
+If you found this project useful, consider giving the repository a ⭐ on GitHub.
+
+It helps others discover the project and motivates future improvements.

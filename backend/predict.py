@@ -1,7 +1,12 @@
+from pathlib import Path
+
 import torch
 
-from model import SiameseNetwork
-from utils import preprocess_image
+from .model import SiameseNetwork
+from .utils import preprocess_image
+
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
 
 # Select device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -11,7 +16,7 @@ model = SiameseNetwork().to(device)
 
 # Load checkpoint
 checkpoint = torch.load(
-    "checkpoints_baseline/best_model.pth",
+    PROJECT_DIR / "checkpoints_baseline" / "best_model.pth",
     map_location=device
 )
 

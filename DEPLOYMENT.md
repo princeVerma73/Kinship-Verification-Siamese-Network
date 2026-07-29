@@ -10,7 +10,7 @@ Create a fresh virtual environment with Python 3.10 or 3.11, install the product
 python -m venv .venv
 .venv\\Scripts\\activate  # Windows
 pip install -r requirements.txt
-uvicorn app:app --reload
+uvicorn backend.app:app --reload
 ```
 
 Open `http://127.0.0.1:8000`.
@@ -23,7 +23,7 @@ For a manually-created service, use these values:
 
 - Runtime: Python
 - Build command: `pip install -r requirements.txt`
-- Start command: `uvicorn app:app --host 0.0.0.0 --port $PORT`
+- Start command: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
 
 Use an always-on service if instant first visits are important. Any host that sleeps an application will still have a cold start because the 136 MB PyTorch checkpoint has to load into memory.
 
@@ -32,7 +32,7 @@ Use an always-on service if instant first visits are important. Any host that sl
 Create a service from the GitHub repository. Railway detects `requirements.txt`; set the start command to:
 
 ```bash
-uvicorn app:app --host 0.0.0.0 --port $PORT
+uvicorn backend.app:app --host 0.0.0.0 --port $PORT
 ```
 
 Keep at least one active instance for the fastest response after deployment.

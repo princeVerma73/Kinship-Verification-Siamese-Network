@@ -1,4 +1,4 @@
-from predict import predict
+from .predict import predict
 
 test_cases = [
 
