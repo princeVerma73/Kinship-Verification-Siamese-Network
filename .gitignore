@@ -38,6 +38,8 @@ checkpoints_baseline/
 checkpoints_train_faces/
 checkpoints_combined/
 
+checkpoints_baseline/*.pth
+
 # ==========================
 # Kaggle Files
 # ==========================
@@ -62,3 +64,4 @@ tmp/
 # ==========================
 .DS_Store
 Thumbs.db
+

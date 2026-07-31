@@ -4,3 +4,5 @@ python-multipart
 torch
 torchvision
 Pillow
+huggingface_hub
+requests
