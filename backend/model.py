@@ -8,9 +8,7 @@ class SiameseNetwork(nn.Module):
         super().__init__()
 
         # Pretrained ResNet18 backbone
-        self.backbone = models.resnet18(
-            weights=models.ResNet18_Weights.DEFAULT
-        )
+        self.backbone = models.resnet18(weights=None)
 
         # Remove the final classification layer
         self.backbone.fc = nn.Identity()
