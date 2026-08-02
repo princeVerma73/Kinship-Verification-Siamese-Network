@@ -228,7 +228,7 @@ Related / Not Related
 
 ## Prediction — Related
 
-![Related](assets/Screenshot 2026-08-03 003003.png)
+![Related](assets/related.png)
 
 ---
 
