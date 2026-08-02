@@ -3,6 +3,15 @@
 A Deep Learning project that predicts whether two face images belong to biological family members using a **Siamese Neural Network** built with **PyTorch** and deployed as a **FastAPI web application** with a modern HTML, CSS, and JavaScript frontend.
 
 ---
+---
+
+# 🌐 Live Demo
+
+🚀 **Web Application**
+
+https://kinship-verification.onrender.com/
+
+> The first request may take around 30–60 seconds because the application is hosted on Render's free tier.
 
 ## 📌 Overview
 
@@ -37,12 +46,28 @@ Kinship verification has applications in:
 - Confidence score generation
 - FastAPI REST backend
 - Modern responsive frontend built with HTML, CSS & JavaScript
-- GPU and CPU inference support
-- Multiple training experiments
 - Clean modular project structure
-- Ready for deployment
 
 ---
+
+---
+
+## 📂 Dataset
+
+This project is trained on the **Recognizing Families In the Wild (RFIW / Families In The Wild - FIW)** kinship dataset.
+
+### Dataset Statistics
+
+| Statistic | Value |
+|-----------|------:|
+| Families | 470 |
+| Individuals | 2,318 |
+| Images | 12,379 |
+| Positive Image Pairs | 165,179 |
+| Negative Image Pairs | 165,179 |
+| Total Training Pairs | 330,358 |
+
+Positive and negative image pairs were generated from family relationships to train the Siamese Neural Network for binary kinship verification.
 
 ## 🛠 Technology Stack
 
