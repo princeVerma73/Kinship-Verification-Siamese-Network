@@ -228,7 +228,7 @@ Related / Not Related
 
 ## Prediction — Related
 
-![Related](assets/related.png)
+![Related](assets/related_kin.png)
 
 ---
 
