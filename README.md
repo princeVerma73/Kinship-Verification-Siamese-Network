@@ -1,10 +1,7 @@
 # 👨‍👩‍👧 Kinship Verification using Siamese Neural Network
 
 A Deep Learning project that predicts whether two face images belong to biological family members using a **Siamese Neural Network** built with **PyTorch** and deployed as a **FastAPI web application** with a modern HTML, CSS, and JavaScript frontend.
-
 ---
----
-
 # 🌐 Live Demo
 
 🚀 **Web Application**
