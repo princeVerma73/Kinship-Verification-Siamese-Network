@@ -318,18 +318,13 @@ Kinship verification is significantly harder than face recognition because:
 
 B.Tech CSE, IIIT Bhagalpur
 
-**GitHub**
-
-https://github.com/princeVerma73
-
-**LinkedIn**
-
-https://www.linkedin.com/in/prince-verma73/
+**GitHub**: https://github.com/princeVerma73
+**LinkedIn** : https://www.linkedin.com/in/prince-verma73/
+**X (Twitter)** : https://x.com/Prince_v73
 
 ---
 
 # ⭐ Support
 
 If you found this project useful, consider giving the repository a ⭐ on GitHub.
-
 It helps others discover the project and motivates future improvements.
