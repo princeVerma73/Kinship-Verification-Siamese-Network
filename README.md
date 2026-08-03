@@ -34,8 +34,22 @@ Kinship verification has applications in:
 - Face retrieval systems
 - Academic computer vision research
 - Social media image analysis
-
 ---
+
+# 🎯 Intended Use
+
+This project focuses on **kinship verification**, where the objective is to determine whether **two different individuals share inherited facial characteristics** that suggest a biological relationship.
+
+Unlike face recognition, which answers:
+
+> "Are these two images of the same person?"
+
+Kinship verification answers:
+
+> **"Do these two different people share inherited facial traits?"**
+
+The deployed model predicts whether two face images are likely to belong to biological family members based on learned facial feature similarities.
+
 
 ## ✨ Features
 
