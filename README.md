@@ -7,6 +7,12 @@ A Deep Learning project that predicts whether two face images belong to biologic
 # 🌐 Live Demo
 
 🚀 **Web Application**
+Upload two portrait images and the application predicts whether the individuals are biologically related along with a confidence score.
+
+Example:
+✅ Related
+
+❌ Not Related
 
 https://kinship-verification.onrender.com/
 
@@ -53,13 +59,11 @@ The deployed model predicts whether two face images are likely to belong to biol
 
 ## ✨ Features
 
-- Siamese Neural Network using ResNet18 backbone
-- Deep face embedding comparison
-- Related / Not Related prediction
-- Confidence score generation
-- FastAPI REST backend
-- Modern responsive frontend built with HTML, CSS & JavaScript
-- Clean modular project structure
+- Siamese Neural Network with shared ResNet18 backbone
+- Binary kinship verification
+- Real-time image pair inference
+- Automatic model download from Hugging Face
+- Responsive deployment on Render
 
 ---
 
@@ -67,7 +71,7 @@ The deployed model predicts whether two face images are likely to belong to biol
 
 ## 📂 Dataset
 
-This project is trained on the **Recognizing Families In the Wild (RFIW / Families In The Wild - FIW)** kinship dataset.
+This project was trained using the **Recognizing Families In the Wild (RFIW)** dataset, derived from the **Families In The Wild (FIW)** benchmark, one of the largest publicly available datasets for kinship verification research.
 
 ### Dataset Statistics
 
@@ -75,7 +79,7 @@ This project is trained on the **Recognizing Families In the Wild (RFIW / Famili
 |-----------|------:|
 | Families | 470 |
 | Individuals | 2,318 |
-| Images | 12,379 |
+| Face Images | 12,379 |
 | Positive Image Pairs | 165,179 |
 | Negative Image Pairs | 165,179 |
 | Total Training Pairs | 330,358 |
@@ -290,6 +294,20 @@ The deployed Baseline Model achieved the following validation metrics:
 | F1 Score | 96.01% |
 | ROC-AUC | 99.35% |
 
+# ⚠️ Limitations
+
+- Designed for **kinship verification**, not face recognition.
+- Works best with clear frontal portrait images.
+- Prediction quality may decrease for:
+  - large age differences
+  - heavy occlusions
+  - poor lighting
+  - extreme poses
+  - low-resolution images
+- Performance may vary on internet images that differ from the training distribution.
+- Predictions should be interpreted as similarity estimates rather than definitive proof of biological relationships.
+- This project is intended for research and educational purposes only.
+
 ---
 
 # 📦 Repository Notes
@@ -315,14 +333,11 @@ Kinship verification is significantly harder than face recognition because:
 
 # 🚀 Future Improvements
 
-- ArcFace embeddings
-- EfficientNet backbone
-- Vision Transformers
-- Better face alignment
-- Ensemble learning
-- Threshold calibration
-- Docker support
-- Cloud deployment
+- Face detection before inference
+- Face alignment
+- Multi-kinship relationship prediction
+- Mobile-friendly interface
+- ONNX / TensorRT optimization
 
 ---
 
@@ -330,15 +345,18 @@ Kinship verification is significantly harder than face recognition because:
 
 **Prince Verma**
 
-B.Tech CSE, IIIT Bhagalpur
+B.Tech CSE • IIIT Bhagalpur
 
-**GitHub**: https://github.com/princeVerma73
+🔗 GitHub: https://github.com/princeVerma73
 
-**LinkedIn** : https://www.linkedin.com/in/prince-verma73/
+💼 LinkedIn: https://www.linkedin.com/in/prince-verma73/
 
-**X (Twitter)** : https://x.com/Prince_v73
+🐦 X (Twitter): https://x.com/Prince_v73
 
 ---
+# 📄 License
+
+This project is released for educational and research purposes.
 
 # ⭐ Support
 
