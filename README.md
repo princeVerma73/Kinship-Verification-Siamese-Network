@@ -10,11 +10,16 @@ A Deep Learning project that predicts whether two face images belong to biologic
 Upload two portrait images and the application predicts whether the individuals are biologically related along with a confidence score.
 
 Example:
+
 ✅ Related
 
 ❌ Not Related
 
 https://kinship-verification.onrender.com/
+
+> **Best Results**
+>
+> The model is designed for **two different individuals** and performs best on clear, frontal portrait images with visible facial features.
 
 > The first request may take around 30–60 seconds because the application is hosted on Render's free tier.
 
